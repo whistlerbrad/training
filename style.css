@@ -18,6 +18,12 @@ body {
   border-radius: 10px;
 }
 
+@media (max-width: 400px ){
+  .doggos img {
+    max-width: 300px;
+  }
+}
+
 button,
 select {
   margin-top: 1em;
