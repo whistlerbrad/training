@@ -9,10 +9,12 @@ function loadDog() {
   promise
     .then(function(response) {
       const processingPromise = response.json();
+      console.table(response);
       return processingPromise;
     })
     .then(function(processedResponse) {
       const img = document.createElement("img");
+      console.table(processedResponse);
       img.src = processedResponse.message;
       img.alt = "Cute doggo";
       doggos.innerHTML = '';
