@@ -16,8 +16,17 @@ promiseBreeds
   })
 
   .then(function(processedResponse) {
+    let bulldog = processedResponse.message.bulldog;
     let breed = processedResponse.message;
+    let returnedBulldog = Object(bulldog);
     let returnedBreeds = Object.keys(breed);
+
+
+    returnedBulldog.forEach((item, i) => {
+      console.log(item);
+    });
+
+
     returnedBreeds.unshift(selectMessage);
     for( breed in returnedBreeds ) {
         breeds.add( new Option( returnedBreeds[breed] ) );
