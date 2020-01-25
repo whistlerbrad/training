@@ -2,13 +2,57 @@
 const DOG_URL = "https://dog.ceo/api/breeds/image/random";
 // api breeds url
 const BREEDS_URL = "https://dog.ceo/api/breeds/list/all";
+const JSON_URL = "https://jsonplaceholder.typicode.com/albums/1/photos";
 // divs
 const doggos = document.querySelector(".doggos");
 const breeds = document.querySelector(".breeds");
+const albumDiv = document.querySelector(".album");
 // select message
 const selectMessage = "Choose one";
 // promise for select breed option
 const promiseBreeds = fetch(BREEDS_URL);
+const promiseAlbums = fetch(JSON_URL);
+
+
+promiseAlbums
+  .then(function(responseAlbums) {
+    const processingPromiseAlbums = responseAlbums.json();
+    return processingPromiseAlbums;
+  })
+
+  .then(function(processingPromiseAlbums) {
+    let albums = processingPromiseAlbums;
+    // let breed = processedResponse.message;
+    // let returnedBulldog = Object(bulldog);
+    let returnedAlbums = Object(albums);
+
+    albumDiv.innerHTML = '';
+    returnedAlbums.forEach((item, i) => {
+      let id = item.id;
+      let url = item.url;
+      let title = item.title;
+      if (i <= 10){
+
+      const img = document.createElement("img");
+      const contentTitle = document.createElement("P");
+      img.src = url;
+      img.alt = title;
+      contentTitle.innerHTML = `${title}`; 
+      albumDiv.appendChild(img);
+      albumDiv.appendChild(contentTitle);
+          console.log(title);
+      }
+    });
+
+
+    // returnedBreeds.unshift(selectMessage);
+    // for( breed in returnedBreeds ) {
+    //     breeds.add( new Option( returnedBreeds[breed] ) );
+    // };
+});
+
+
+
 promiseBreeds
   .then(function(response) {
     const processingPromise = response.json();
